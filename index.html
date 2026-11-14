@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>File Renamer – clearance documents</title>
+<meta name="description" content="Rename clearance certificates and documents to your standard format. Runs in your browser; files are never uploaded.">
+<meta name="theme-color" content="#1d2f4f">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+<div class="brand"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="var(--btn)"/><path d="M13 9h13l6 6v20H13z" fill="var(--paper)"/><path d="M26 9v6h6" fill="none" stroke="var(--acc)" stroke-width="2"/><rect x="17" y="21" width="10" height="2.4" rx="1.2" fill="var(--btn)"/><rect x="17" y="26" width="10" height="2.4" rx="1.2" fill="var(--acc)"/></svg><h1>File Renamer</h1></div>
+<p class="lead">Drop in your clearance certificates and documents. Each one is read, recognised and given its proper name. Files stay on your device.</p>
+
+<section class="step"><h2><span class="n">1</span>Batch details</h2>
+<div class="grid">
+<div><label for="client">Client / project (optional)</label><input id="client" type="text" placeholder="Only if the document doesn’t name one"></div>
+<div><label for="mon">Month</label><select id="mon"></select></div>
+<div><label for="yr">Year</label><input id="yr" type="number" inputmode="numeric"></div>
+</div>
+<label for="co">Default company</label><select id="co"></select>
+<p class="hint">If a document mentions one of your companies, that company is used instead.</p>
+</section>
+
+<section class="step"><h2><span class="n">2</span>Add your files</h2>
+<label class="drop" for="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><b>Tap to choose files</b><span>You can pick several at once. PDFs are read automatically.</span></label>
+<input id="fi" type="file" multiple hidden>
+</section>
+
+<section class="step"><h2><span class="n">3</span>Review and save</h2>
+<div id="list"></div>
+<div class="msg" id="msg" role="status"></div>
+<p class="hint" id="empty">Your renamed files will appear here for checking before you save them.</p>
+</section>
+
+<details class="step"><summary>Settings: companies and naming formats</summary>
+<label for="cos">Companies: SHORT NAME = full name | other spelling (one per line)</label><textarea id="cos"></textarea>
+<label for="cls">Known clients: CODE = full name (one per line)</label><textarea id="cls"></textarea>
+<div id="types"></div>
+<label for="fb">Format for other documents (named from their bold heading)</label><input type="text" id="fb">
+<div class="sbtns"><button id="addt" type="button">Add document type</button><button id="savecfg" type="button" class="pri">Save settings</button><button id="reset" type="button">Reset to defaults</button></div>
+<div class="msg" id="smsg" role="status"></div>
+<p class="hint">In a format you can use {company} {type} {client} {mon} (OCT) {month} (OCTOBER) {year}. Keywords are words that identify the document, separated by commas.</p>
+</details>
+</main>
+<noscript><p style="padding:16px">This tool needs JavaScript turned on.</p></noscript>
+<script src="/vendor/pdf.min.js"></script>
+<script src="/vendor/jszip.min.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
